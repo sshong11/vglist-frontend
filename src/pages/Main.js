@@ -45,7 +45,8 @@ function Main(props) {
                     path="/games/:id" 
                     render={(rp) => (
                         <SingleEntry
-                        {...rp} />
+                        {...rp}
+                        entry={entry} />
                     )}
                 />
 
