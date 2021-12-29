@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react"
-import {Route, Switch} from "react-router-dom"
+import React from "react"
 import Entry from "../components/entry"
 
 function AllEntries(props) {

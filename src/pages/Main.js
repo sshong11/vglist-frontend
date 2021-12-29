@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import {Route, Switch} from "react-router-dom"
+import {Route, Switch, Link} from "react-router-dom"
 import AllEntries from "./AllEntries"
 import SingleEntry from "./SingleEntry"
 import Form from "./Form"
@@ -9,6 +9,10 @@ function Main(props) {
     const url = "https://vg-list.herokuapp.com/games/"
 
     const [entry, setEntries] = useState([])
+
+    const nullEntry = {
+        name: "",
+    }
 
     const getEntries = async () => {
         const response = await fetch(url)
@@ -35,6 +39,7 @@ function Main(props) {
     return (
         <div>
             <h1>VGList</h1>
+            <Link to="/new"><button>New Rating</button></Link>
             <Switch>
                 <Route 
                     exact path="/"
@@ -45,8 +50,8 @@ function Main(props) {
                     path="/games/:id" 
                     render={(rp) => (
                         <SingleEntry
-                        {...rp}
-                        entry={entry} />
+                            {...rp}
+                            entry={entry} />
                     )}
                 />
 
@@ -54,7 +59,9 @@ function Main(props) {
                     path="/new"
                     render={(rp) => (
                         <Form
-                            {...rp} />
+                            {...rp}
+                            handleSubmit={addEntry} 
+                            initialEntry={nullEntry}/>
                     )}
                 />
 
