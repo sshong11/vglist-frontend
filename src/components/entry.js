@@ -1,5 +1,15 @@
+import React from "react"
+import {Link} from "react-router-dom"
+
 function Entry(props) {
-    return <h1>Entry</h1>
+
+    return (
+        <div>
+            <Link to={`/games/${props.entry.id}`}>
+                <h1>{props.entry.name}</h1>
+            </Link>
+        </div>
+    )
 }
 
 export default Entry
