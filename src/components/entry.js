@@ -4,11 +4,14 @@ import {Link} from "react-router-dom"
 function Entry(props) {
 
     return (
-        <div>
-            <Link to={`/games/${props.entry.id}`}>
-                <h1>{props.entry.name}</h1>
-            </Link>
-        </div>
+        <tbody>
+            <tr>
+                <td><a>{props.entry.image}</a></td>
+                <td><Link to={`/games/${props.entry.id}`}><a>{props.entry.name}</a></Link></td>
+                <td><a>{props.entry.score}</a></td>
+                <td><a>{props.entry.genre}</a></td>
+            </tr>
+        </tbody>
     )
 }
 
