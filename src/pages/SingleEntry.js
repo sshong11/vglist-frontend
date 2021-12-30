@@ -1,3 +1,6 @@
+import React from "react"
+import {Link} from "react-router-dom"
+
 function SingleEntry(props) {
 
     const id = parseInt(props.match.params.id)
@@ -12,6 +15,7 @@ function SingleEntry(props) {
             <h1>{entry?.genre}</h1>
             <h1>{entry?.notes}</h1>
             <h1>{entry?.created_at}</h1>
+            <Link to="/edit"><button onClick={(event) => props.edit(entry)}>Edit</button></Link>
         </div>
     )
 }

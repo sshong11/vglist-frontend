@@ -23,6 +23,34 @@ function Form(props) {
                 name="name"
             />
 
+            <input
+                type="number"
+                onChange={handleChange}
+                value={formData.score}
+                name="score"
+            />
+
+            <input
+                type="text"
+                onChange={handleChange}
+                value={formData.image}
+                name="image"
+            />
+
+            <input
+                type="text"
+                onChange={handleChange}
+                value={formData.genre}
+                name="genre"
+            />
+
+            <input
+                type="text"
+                onChange={handleChange}
+                value={formData.notes}
+                name="notes"
+            />
+
             <input type="submit" value="Submit" />
         </form>
     )

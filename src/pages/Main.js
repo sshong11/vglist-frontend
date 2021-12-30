@@ -14,6 +14,8 @@ function Main(props) {
         name: "",
     }
 
+    const [targetEntry, setTargetEntry] = useState(nullEntry)
+
     const getEntries = async () => {
         const response = await fetch(url)
         const data = await response.json()
@@ -30,6 +32,21 @@ function Main(props) {
         })
 
         getEntries()
+    }
+
+    const updateEntry = async (entry) => {
+        const response = await fetch(url + entry.id + "/", {
+            method: "put",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(entry)
+        })
+    }
+
+    const getTargetEntry = (entry) => {
+        setTargetEntry(entry)
+        props.history.push("/edit")
     }
 
     useEffect(() => {
@@ -51,7 +68,8 @@ function Main(props) {
                     render={(rp) => (
                         <SingleEntry
                             {...rp}
-                            entry={entry} />
+                            entry={entry} 
+                            edit={getTargetEntry} />
                     )}
                 />
 
@@ -61,7 +79,7 @@ function Main(props) {
                         <Form
                             {...rp}
                             handleSubmit={addEntry} 
-                            initialEntry={nullEntry}/>
+                            initialEntry={nullEntry} />
                     )}
                 />
 
@@ -69,7 +87,9 @@ function Main(props) {
                     path="/edit"
                     render={(rp) => (
                         <Form
-                            {...rp} />
+                            {...rp} 
+                            handleSubmit={updateEntry}
+                            initialEntry={targetEntry} />
                     )}
                 />
             </Switch>
