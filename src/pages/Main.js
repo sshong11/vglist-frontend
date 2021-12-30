@@ -42,6 +42,8 @@ function Main(props) {
             },
             body: JSON.stringify(entry)
         })
+
+        getEntries()
     }
 
     const getTargetEntry = (entry) => {
@@ -52,6 +54,15 @@ function Main(props) {
     useEffect(() => {
         getEntries()
     }, [])
+
+    const deleteEntry = async (entry) => {
+        const response = await fetch(url + entry.id + "/", {
+            method: "delete"
+        })
+
+        getEntries()
+        props.history.push("/")
+    }
 
     return (
         <div>
@@ -69,7 +80,8 @@ function Main(props) {
                         <SingleEntry
                             {...rp}
                             entry={entry} 
-                            edit={getTargetEntry} />
+                            edit={getTargetEntry}
+                            delete={deleteEntry} />
                     )}
                 />
 

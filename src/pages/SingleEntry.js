@@ -16,6 +16,8 @@ function SingleEntry(props) {
             <h1>{entry?.notes}</h1>
             <h1>{entry?.created_at}</h1>
             <Link to="/edit"><button onClick={(event) => props.edit(entry)}>Edit</button></Link>
+            <Link to="/"><button onClick={(event) => props.delete(entry)}>Delete</button></Link>
+            <Link to="/"><button>Back</button></Link>
         </div>
     )
 }
