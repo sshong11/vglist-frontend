@@ -3,6 +3,7 @@ import {Route, Switch, Link} from "react-router-dom"
 import AllEntries from "./AllEntries"
 import SingleEntry from "./SingleEntry"
 import Form from "./Form"
+import Navbar from "../components/navbar"
 
 function Main(props) {
 
@@ -65,8 +66,8 @@ function Main(props) {
     }
 
     return (
-        <div>
-            <h1>VGList</h1>
+        <div className="main">
+            <Navbar />
             <Link to="/new"><button>New Rating</button></Link>
             <Switch>
                 <Route 

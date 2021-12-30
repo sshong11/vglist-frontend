@@ -7,10 +7,12 @@ function AllEntries(props) {
     const all = props.entry.map((e) => <Entry entry={e} key={e.id} />)
 
     return (
-        <table>
-            <Tableheader />
-            {all}
-        </table>
+        <div className="allEntries">
+            <table>
+                <Tableheader />
+                {all}
+            </table>
+        </div>
     )
 }
 

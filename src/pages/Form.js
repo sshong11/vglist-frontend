@@ -16,35 +16,37 @@ function Form(props) {
 
     return (
         <form onSubmit={handleSubmission}>
-            <input
+            Name: <input
                 type="text"
                 onChange={handleChange}
                 value={formData.name}
                 name="name"
+                required
             />
 
-            <input
+            Score: <input
                 type="number"
                 onChange={handleChange}
                 value={formData.score}
                 name="score"
+                required
             />
 
-            <input
+            Upload an image: <input
                 type="text"
                 onChange={handleChange}
                 value={formData.image}
                 name="image"
             />
 
-            <input
+            Genre(s): <input
                 type="text"
                 onChange={handleChange}
                 value={formData.genre}
                 name="genre"
             />
 
-            <input
+            Notes: <input
                 type="text"
                 onChange={handleChange}
                 value={formData.notes}
