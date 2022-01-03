@@ -1,11 +1,28 @@
 import React, {useState, useEffect} from "react"
 import {Route, Switch, Link} from "react-router-dom"
+import { useAppState } from "../AppState"
 import AllEntries from "./AllEntries"
 import SingleEntry from "./SingleEntry"
 import Form from "./Form"
 import Navbar from "../components/navbar"
+import Auth from "./Auth"
 
 function Main(props) {
+
+    // USER AUTH //
+
+    const {state, dispatch} = useAppState()
+    useState(() => {
+        const auth = JSON.parse(window.localStorage.getItem("auth"))
+        if (auth) {
+            dispatch({type: "auth", payload: auth})
+            props.history.push("/games")
+        } else {
+            props.history.push("/auth/login")
+        }
+    }, [])
+
+    ///////////////
 
     const url = "https://vg-list.herokuapp.com/games/"
 
@@ -67,12 +84,20 @@ function Main(props) {
 
     return (
         <div className="main">
-            <Navbar />
+            <Route path="/" component={Navbar} />
             <Link to="/new"><button>New Rating</button></Link>
             <Switch>
                 <Route 
                     exact path="/"
                     render={(rp) => <AllEntries {...rp} entry={entry}/>}
+                />
+
+                <Route 
+                    path="/auth/:form"
+                    render={(rp) => (
+                        <Auth 
+                            {...rp}/>
+                    )}
                 />
 
                 <Route
