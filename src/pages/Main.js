@@ -16,7 +16,7 @@ function Main(props) {
         const auth = JSON.parse(window.localStorage.getItem("auth"))
         if (auth) {
             dispatch({type: "auth", payload: auth})
-            props.history.push("/games")
+            props.history.push("/")
         } else {
             props.history.push("/auth/login")
         }
@@ -25,6 +25,8 @@ function Main(props) {
     ///////////////
 
     const url = "https://vg-list.herokuapp.com/games/"
+
+    const {token} = state
 
     const [entry, setEntries] = useState([])
 
@@ -35,7 +37,12 @@ function Main(props) {
     const [targetEntry, setTargetEntry] = useState(nullEntry)
 
     const getEntries = async () => {
-        const response = await fetch(url)
+        const response = await fetch(url, {
+            method: "get",
+            headers: {
+                Authorization: "bearer " + token
+            }
+        })
         const data = await response.json()
         setEntries(data)
     }
@@ -44,7 +51,8 @@ function Main(props) {
         const response = await fetch(url, {
             method: "post",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: "bearer " + token
             },
             body: JSON.stringify(newEntry)
         })
@@ -56,7 +64,8 @@ function Main(props) {
         const response = await fetch(url + entry.id + "/", {
             method: "put",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: "bearer " + token
             },
             body: JSON.stringify(entry)
         })
@@ -70,17 +79,25 @@ function Main(props) {
     }
 
     useEffect(() => {
+        if (!token) {
+            return
+        }
         getEntries()
-    }, [])
+    }, [token])
 
     const deleteEntry = async (entry) => {
         const response = await fetch(url + entry.id + "/", {
-            method: "delete"
+            method: "delete",
+            headers: {
+                Authorization: "bearer " + token
+            }
         })
 
         getEntries()
         props.history.push("/")
     }
+
+    console.log(entry)
 
     return (
         <div className="main">
@@ -89,7 +106,7 @@ function Main(props) {
             <Switch>
                 <Route 
                     exact path="/"
-                    render={(rp) => <AllEntries {...rp} entry={entry}/>}
+                    render={(rp) => <AllEntries {...rp} entry={entry} />}
                 />
 
                 <Route 
