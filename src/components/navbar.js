@@ -12,7 +12,7 @@ function Navbar(props) {
             {state.token ? <Link to={`/profile/${state.username}`}>{state.username}</Link> : null}
             {!state.token ? (<><Link to="/auth/signup">Sign Up</Link>
             <Link to="/auth/login">Login</Link></>) : null}
-            {state.token ? <button onClick={() => {dispatch({type: "logout"}); props.history.push("/auth/login")}}>Logout</button> : null}
+            {state.token ? <button onClick={() => {dispatch({type: "logout"}); props.history.push("/")}}>Logout</button> : null}
         </nav>
     )
 }
