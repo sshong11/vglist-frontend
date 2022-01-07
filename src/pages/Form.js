@@ -42,14 +42,6 @@ function Form(props) {
                 <option value="2">2</option>
                 <option value="1">1</option>
             </select>
-            
-            {/* <input
-                type="number"
-                onChange={handleChange}
-                value={formData.score}
-                name="score"
-                required
-            /> */}
 
             Upload an image: <input
                 type="text"

@@ -50,9 +50,17 @@ img {
   width: 9vw;
 }
 
+#homeHeader {
+  background-color: white;
+  width: 73vw;
+  padding: 2vw;
+  margin: auto;
+}
+
 .homePage {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
   margin: 0 11vw 0 11vw;
   background-color: white;
 }
@@ -70,9 +78,13 @@ img {
   flex-direction: column;
   white-space: nowrap;
   padding: 3vw;
-  margin-right: 2vw;
+  margin: 4vh 2vw 0 0;
+  background-color: rgba(0, 0, 0, 0.171);
+}
 
-  background-color: rgba(0, 0, 0, 0.452);
+.homeUsers2 {
+  display: flex;
+  flex-direction: column;
 }
 
 .gameHome {

@@ -9,7 +9,7 @@ function Navbar(props) {
         <nav>
             <Link to="/"><h1>VGList</h1></Link>
             <Link to="/">Home</Link>
-            {state.token ? <Link to={`/profile/${state.username}`}>User</Link> : null}
+            {state.token ? <Link to={`/profile/${state.username}`}>{state.username}</Link> : null}
             {!state.token ? (<><Link to="/auth/signup">Sign Up</Link>
             <Link to="/auth/login">Login</Link></>) : null}
             {state.token ? <button onClick={() => {dispatch({type: "logout"}); props.history.push("/auth/login")}}>Logout</button> : null}

@@ -9,13 +9,14 @@ function Home(props) {
     const usns = props.allUSN.map((e) => (<Link to={`/profile/${e.username}`}><div>{e.username}</div></Link>))
 
     return (<>
-        <h1>Home</h1>
+        <h1 id="homeHeader">Home</h1>
         <div className="homePage">
             <div className="homeSection">
                 {all}
             </div>
+
             <div className="homeUsers">
-                <h2>Other Users:</h2>
+                <h3>Other Users:</h3>
                 {usns}
             </div>
         </div>
