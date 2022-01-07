@@ -1,11 +1,10 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import {useAppState} from "../AppState"
+import {Link} from "react-router-dom"
 
 function Form(props) {
 
-    const {state, dispatch} = useAppState()
-    const {token} = state
-    const action = props.match.path.slice(1)
+    const {state} = useAppState()
 
     const [formData, setFormData] = useState(props.initialEntry)
 
@@ -17,15 +16,11 @@ function Form(props) {
     const handleSubmission = (event) => {
         event.preventDefault()
         props.handleSubmit(formData)
-        props.history.push("/")
-        // actions[action]().then((data) => {
-        //     props.handleSubmit()
-        //     props.history.push("/")
-        // })
+        props.history.push(`/profile/${state.username}`)
     }
 
     return (
-        <form onSubmit={handleSubmission}>
+        <form onSubmit={handleSubmission} onChange={handleChange}>
             Name: <input
                 type="text"
                 onChange={handleChange}
@@ -34,13 +29,27 @@ function Form(props) {
                 required
             />
 
-            Score: <input
+            Score: <select name="score" onChange={handleChange} value={formData.score} required>
+                <option value="select">Select</option>
+                <option value="10">10</option>
+                <option value="9">9</option>
+                <option value="8">8</option>
+                <option value="7">7</option>
+                <option value="6">6</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+            </select>
+            
+            {/* <input
                 type="number"
                 onChange={handleChange}
                 value={formData.score}
                 name="score"
                 required
-            />
+            /> */}
 
             Upload an image: <input
                 type="text"
@@ -63,7 +72,10 @@ function Form(props) {
                 name="notes"
             />
 
+            <input type="hidden" value={state.username} onChange={handleChange} name="submitter" />
+
             <input type="submit" value="Submit" />
+            <Link to={`/profile/${state.username}`}><button>Back</button></Link>
         </form>
     )
 }

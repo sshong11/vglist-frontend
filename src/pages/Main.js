@@ -6,6 +6,7 @@ import SingleEntry from "./SingleEntry"
 import Form from "./Form"
 import Navbar from "../components/navbar"
 import Auth from "./Auth"
+import Home from "./Home"
 
 function Main(props) {
 
@@ -16,9 +17,8 @@ function Main(props) {
         const auth = JSON.parse(window.localStorage.getItem("auth"))
         if (auth) {
             dispatch({type: "auth", payload: auth})
-            props.history.push("/")
         } else {
-            props.history.push("/auth/login")
+            props.history.push("/")
         }
     }, [])
 
@@ -26,16 +26,35 @@ function Main(props) {
 
     const url = "https://vg-list.herokuapp.com/games/"
 
+
     const {token} = state
 
+    // for ALL
+    const [allGames, setAllGames] = useState([])
+
+    // for USERS
     const [entry, setEntries] = useState([])
+
+    // for USERNAMES
+    const [usn, setUSN] = useState([])
 
     const nullEntry = {
         name: "",
+        submitter: state.username,
     }
 
     const [targetEntry, setTargetEntry] = useState(nullEntry)
 
+    // Gets ALL users games added (for home page)
+    const getEveryEntries = async () => {
+        const response = await fetch("https://vg-list.herokuapp.com/allgames", {
+            method: "get",
+        })
+        const data = await response.json()
+        setAllGames(data)
+    }
+
+    // Gets USERS games added
     const getEntries = async () => {
         const response = await fetch(url, {
             method: "get",
@@ -45,6 +64,15 @@ function Main(props) {
         })
         const data = await response.json()
         setEntries(data)
+    }
+
+    // Gets all usernames
+    const getUSN = async () => {
+        const response = await fetch("https://vg-list.herokuapp.com/allusers", {
+            method: "get",
+        })
+        const data = await response.json()
+        setUSN(data)
     }
 
     const addEntry = async (newEntry) => {
@@ -80,9 +108,14 @@ function Main(props) {
 
     useEffect(() => {
         if (!token) {
+            getEveryEntries()
+            getUSN()
             return
-        }
-        getEntries()
+        } else {
+            getEveryEntries()
+            getUSN()
+            getEntries()
+        }  
     }, [token])
 
     const deleteEntry = async (entry) => {
@@ -94,19 +127,16 @@ function Main(props) {
         })
 
         getEntries()
-        props.history.push("/")
+        props.history.push(`/profile/${state.username}`)
     }
-
-    console.log(entry)
 
     return (
         <div className="main">
             <Route path="/" component={Navbar} />
-            <Link to="/new"><button>New Rating</button></Link>
             <Switch>
                 <Route 
                     exact path="/"
-                    render={(rp) => <AllEntries {...rp} entry={entry} />}
+                    render={(rp) => <Home {...rp} allGames={allGames} allUSN={usn}/>}
                 />
 
                 <Route 
@@ -118,13 +148,19 @@ function Main(props) {
                 />
 
                 <Route
+                    exact path={`/profile/${state.username}`}
+                    render={(rp) => <AllEntries {...rp} entry={entry} />}
+                />
+
+                <Route
                     path="/games/:id" 
                     render={(rp) => (
                         <SingleEntry
                             {...rp}
                             entry={entry} 
                             edit={getTargetEntry}
-                            delete={deleteEntry} />
+                            delete={deleteEntry}
+                            state={state} />
                     )}
                 />
 

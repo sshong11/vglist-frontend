@@ -12,13 +12,14 @@ function SingleEntry(props) {
         <div>
             <h1>{entry?.name}</h1>
             <h1>{entry?.score}</h1>
-            <h1>{entry?.image}</h1>
+            <img src={entry?.image} />
             <h1>{entry?.genre}</h1>
             <h1>{entry?.notes}</h1>
+            <h1>{entry?.submitter}</h1>
             <h1>{entry?.created_at}</h1>
             <Link to="/edit"><button onClick={(event) => props.edit(entry)}>Edit</button></Link>
             <Link to="/"><button onClick={(event) => props.delete(entry)}>Delete</button></Link>
-            <Link to="/"><button>Back</button></Link>
+            <Link to={`/profile/${props.state.username}`}><button>Back</button></Link>
         </div>
     )
 }
