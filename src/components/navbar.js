@@ -9,7 +9,7 @@ function Navbar(props) {
     return (
         <nav>
             <Link to="/"><a id="title">VGList</a></Link>
-            <Menu right customBurgerIcon={ <i class="fa fa-bars fa-custom fa-3x"></i> }>
+            <Menu right customBurgerIcon={ <i class="fa fa-bars"></i> }>
                 <Link to="/"><a id="homeOption">Home</a></Link>
                 {state.token ? <Link to={`/profile/${state.username}`}><a>{state.username}</a></Link> : null}
                 {!state.token ? (<><Link to="/auth/signup"><a>Sign Up</a></Link>
