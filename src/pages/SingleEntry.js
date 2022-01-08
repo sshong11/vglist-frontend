@@ -12,10 +12,10 @@ function SingleEntry(props) {
 
 
     return (
-        <div>
+        <div className="singleEntry">
             <h1>{entry?.name}</h1>
             <h1>{entry?.score}</h1>
-            <img src={entry?.image} />
+            <img id="singleImg"src={entry?.image} />
             <h1>{entry?.genre}</h1>
             <h1>{entry?.notes}</h1>
             <h3>Submitted on: {date}</h3>
