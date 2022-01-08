@@ -1,6 +1,7 @@
 import React from "react"
 import Game from "../components/game"
 import {Link} from "react-router-dom"
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 function Home(props) {
     
@@ -9,7 +10,7 @@ function Home(props) {
     const usns = props.allUSN.map((e) => (<Link to={`/profile/${e.username}`}><div>{e.username}</div></Link>))
 
     return (<>
-        <h1 id="homeHeader">Home</h1>
+        <h1 id="homeHeader">Check out these games from other users</h1>
         <div className="homePage">
             <div className="homeSection">
                 {all}

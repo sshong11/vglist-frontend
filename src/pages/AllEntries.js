@@ -8,8 +8,9 @@ function AllEntries(props) {
     const all = props.entry.map((e) => <Entry entry={e} key={e.id} />)
 
     return (<>
-        <Link to="/new"><button>New Rating</button></Link>
+        <Link to="/new"><button id="newRatingB">New Rating</button></Link>
         <div className="allEntries">
+        <span id="th-span">ALL GAMES PLAYED</span>
             <table>
                 <Tableheader />
                 {all}

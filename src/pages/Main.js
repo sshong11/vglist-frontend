@@ -136,7 +136,7 @@ function Main(props) {
             <Switch>
                 <Route 
                     exact path="/"
-                    render={(rp) => <Home {...rp} allGames={allGames} allUSN={usn}/>}
+                    render={(rp) => <Home {...rp} allGames={allGames} allUSN={usn} getEvery={getEveryEntries}/>}
                 />
 
                 <Route 
