@@ -41,6 +41,22 @@ nav {
 
 }
 
+#navlogout {
+  font-family: 'Sen';
+  font-size: 15px;
+  padding: 0.5em;
+  color: white;
+  background-color: #b43d37;
+  border: none;
+  cursor: pointer;
+}
+
+#navlogout:hover {
+  color: #ffd3c8;
+  background-color: #832d28;
+  border-radius: 5px;
+}
+
 #title {
   font-size: 2em;
   padding: 0;
