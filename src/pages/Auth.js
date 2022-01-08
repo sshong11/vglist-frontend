@@ -15,7 +15,7 @@ function Auth(props) {
             const {token, user} = userData
             dispatch({type: "auth", payload: {token, username: user.username}})
             window.localStorage.setItem("auth", JSON.stringify({token, username: user.username}))
-            props.history.push(`/`)
+            props.history.push(`/profile`)
         }
     }, [userData])
 
@@ -56,7 +56,7 @@ function Auth(props) {
             <form onSubmit={handleSubmit}>
                 <input type="text" name="username" placeholder="Username"  value={formData.username} onChange={handleChange} />
                 <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} />
-                <input type="submit" value={type} />
+                <input type="submit" value={type.toUpperCase()} />
             </form>
         </div>
     )

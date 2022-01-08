@@ -1,4 +1,5 @@
 import React from "react"
+import {Link} from "react-router-dom"
 
 function Game(props) {
 
@@ -9,7 +10,7 @@ function Game(props) {
             <p>{game.name}</p>
             <p>{game.score}/10</p>
             <a>by: {game.submitter}</a>
-            <img src={game.image} />
+            <img src={game.image} alt={game.name} />
         </div>
     )
 }

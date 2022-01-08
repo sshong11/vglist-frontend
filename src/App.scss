@@ -95,7 +95,7 @@ a:link, a:visited {
   background-color:#ec9782;
 }
 
-#newRatingB {
+.newRatingB {
   border: none;
   padding: 1vw;
   font-family: 'Sen';
@@ -106,7 +106,7 @@ a:link, a:visited {
   margin: 2vh 0 2vh 0;
 }
 
-#newRatingB:hover {
+.newRatingB:hover {
   background-color: #f6522d;
   color: white;
 }
@@ -199,9 +199,9 @@ th {
   display: flex;
   flex-direction: column;
   white-space: nowrap;
-  padding: 3vw;
+  padding: 3vw 3vw 15vh 3vw;
   margin: 4vh 2vw 0 0;
-  background-color: rgba(0, 0, 0, 0.171);
+  background-color: #ec9782;
   border-radius: 25px;
 }
 
@@ -227,4 +227,45 @@ th {
     color: gray;
     font-size: 12px;
   }
+}
+
+.homeUSN {
+  transition-duration: 0.3s;
+}
+
+.homeUSN:hover {
+  color: white;
+}
+
+//////////////////////////
+///// FORMS
+/////////////////////////
+form {
+  margin: 5vh 0 10px 0;
+  border: 1px solid black;
+  input {
+    padding: 10px;
+    font-size: 1.1em;
+    margin: 2vw;
+    color: #481f2f;
+    width: 20vw;
+    background-color: #e2e2e2;
+
+    border: none;
+    border-bottom: 2px solid #481f2f;
+  }
+
+  select {
+    width: 5vw;
+    text-align: center;
+    margin: 2vw auto;
+  }
+}
+
+#formSubmit {
+  margin: auto;
+}
+
+textarea:focus, input:focus{
+  outline: none;
 }

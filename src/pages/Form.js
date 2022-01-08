@@ -66,8 +66,8 @@ function Form(props) {
 
             <input type="hidden" value={state.username} onChange={handleChange} name="submitter" />
 
-            <input type="submit" value="Submit" />
-            <Link to={`/profile/${state.username}`}><button>Back</button></Link>
+            <input className="newRatingB" id="formSubmit" type="submit" value="Submit" />
+            <Link to={`/profile/${state.username}`}><button className="newRatingB">Back</button></Link>
         </form>
     )
 }
